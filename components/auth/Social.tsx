@@ -2,6 +2,7 @@
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
 import {Button} from "@/components/ui/button"
+import { signIn } from "@/auth"
 export const Social = () =>{
          return(
                   <>
@@ -10,7 +11,9 @@ export const Social = () =>{
          size="lg"
          className="w-full"
          variant="outline"
-         onClick={()=>{}}
+         onClick={async ()=>{
+          await signIn("google")
+         }}
          >
          <FcGoogle className="w-5 h-5"/>    
        </Button>        
