@@ -16,7 +16,7 @@ const validatedFields=LoginSchema.safeParse(values);
 
 
 if(!validatedFields.success){
-         return {error:"invalid credencials1"}
+         return {error:"invalid credencials"}
 } 
 
 const {email , password} = validatedFields.data
@@ -35,7 +35,7 @@ try {
          if (error instanceof AuthError) {
          switch(error.type){
          case "CredentialsSignin":
-                  return {error:"invalid credetials!2"}
+                  return {error:"invalid credetials!"}
          default:
                   return {error : "something went wrong!"}
          }     

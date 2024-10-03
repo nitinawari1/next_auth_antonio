@@ -1,5 +1,5 @@
 import { auth  ,signOut} from "@/auth";
-import { json } from "stream/consumers";
+
 
 const settingsPage =async () => {
          const session = await auth();

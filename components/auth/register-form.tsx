@@ -10,6 +10,7 @@ import { FormError } from "@/components/form-error"
 import { FormSuccess } from "@/components/form-success"
 import {Register} from "@/actions/register"
 import {useTransition , useState} from "react"
+import {useRouter} from "next/navigation";
 
 import {
     Form,
@@ -22,6 +23,7 @@ import {
 } from  "@/components/ui/form"
 
 export const RegisterForm =()=>{
+  const router = useRouter();
     const [isPending, startTransition] = useTransition()
     const [error , setError] = useState<string |undefined>("")
     const [success , setSuccess] = useState<string |undefined>("")
@@ -45,6 +47,9 @@ export const RegisterForm =()=>{
         .then((data)=>{
             setError(data.error)
             setSuccess(data.success)
+            if(data.success){
+              router.push("/auth/login");
+            }
         })
     })
    
