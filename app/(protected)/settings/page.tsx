@@ -1,7 +1,10 @@
 import { auth  ,signOut} from "@/auth";
 
 
+
 const settingsPage =async () => {
+
+        
          const session = await auth();
 
          return (
@@ -9,7 +12,8 @@ const settingsPage =async () => {
                            {JSON.stringify(session)};
                   <form action={async()=>{
                            "use server";
-                           await signOut();
+                           await signOut({ redirectTo: "/auth/login" });
+                           
                   }}>
 
      

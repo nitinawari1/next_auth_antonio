@@ -10,7 +10,7 @@ interface cardWrapperProps{
   headerLabel : string;
   backButtonLabel:string;
   backButtonHref:string;
-  sideLinkLable:string
+  sideLinkLable?:string
   showSocial?:boolean
 }
 

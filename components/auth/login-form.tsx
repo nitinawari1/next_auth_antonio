@@ -1,4 +1,13 @@
 "use client"
+import {
+    Form,
+    FormItem,
+    FormLabel,
+    FormControl,
+    FormDescription,
+    FormMessage,
+    FormField,
+} from  "@/components/ui/form"
 import { CardWrapper } from "@/components/auth/card-wrapper"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -10,18 +19,14 @@ import { FormError } from "@/components/form-error"
 import { FormSuccess } from "@/components/form-success"
 import {Login} from "@/actions/login"
 import {useTransition , useState} from "react"
-
-import {
-    Form,
-    FormItem,
-    FormLabel,
-    FormControl,
-    FormDescription,
-    FormMessage,
-    FormField,
-} from  "@/components/ui/form"
+import { useSearchParams } from "next/navigation"
 
 export const LoginForm =()=>{
+    const searchParams = useSearchParams()
+
+    const urlError  = searchParams.get("error") === "OAuthAccountNotLinked" ? "email is aleary use with diffrent providers!" : null;
+
+
     const [isPending, startTransition] = useTransition()
     const [error , setError] = useState<string |undefined>("")
     const [success , setSuccess] = useState<string |undefined>("")
@@ -41,13 +46,10 @@ export const LoginForm =()=>{
     startTransition(()=>{
         Login(values)
         .then((data)=>{
-           if(data.error){
+               setError(data?.error)
+            //   setSuccess(data.success)
 
-               setError(data.error)
-           }else{
-            //    setSuccess(data.success)
-
-           }
+           
         });
     });
    
@@ -109,7 +111,7 @@ export const LoginForm =()=>{
 
             
             </div>
-            <FormError message={error}/>
+            <FormError message={error || urlError}/>
             <FormSuccess message={success}/>
          <Button
          disabled={isPending}

@@ -3,8 +3,8 @@ import {Button} from "@/components/ui/button"
 import Link from "next/link"
 interface BackButtonProps {
    label :string
-   href : string
-   sideLabel:string
+   href: string
+   sideLabel?:string
 }
 
 export const BackButton =  ({

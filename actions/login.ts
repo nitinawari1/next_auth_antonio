@@ -22,14 +22,13 @@ if(!validatedFields.success){
 const {email , password} = validatedFields.data
 
 try {
-       const res =  await signIn("credentials", {
+        await signIn("credentials", {
            email,
            password,
-           redirect: true, // Change to true for automatic redirection
-           callbackUrl: DEFAULT_LOGIN_REDIRECT, // Specify the callback URL
+           redirectTo:DEFAULT_LOGIN_REDIRECT
          });
          
-     return res
+     
      
 } catch (error) {
          if (error instanceof AuthError) {
@@ -37,7 +36,7 @@ try {
          case "CredentialsSignin":
                   return {error:"invalid credetials!"}
          default:
-                  return {error : "something went wrong!"}
+             return {error : "something went wrong!"}
          }     
        }
          throw error;
