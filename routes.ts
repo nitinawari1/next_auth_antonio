@@ -18,6 +18,7 @@ export const authRoutes =[
          "/auth/error"
 ]
 
+
 /**
  * the prefix for API authentication routes           
  * routes that start with this prefix are used for API authentication purposes 

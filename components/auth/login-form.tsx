@@ -24,7 +24,7 @@ import { useSearchParams } from "next/navigation"
 export const LoginForm =()=>{
     const searchParams = useSearchParams()
 
-    const urlError  = searchParams.get("error") === "OAuthAccountNotLinked" ? "email is aleary use with diffrent providers!" : null;
+    const urlError  = searchParams.get("error") === "OAuthAccountNotLinked" ? "email is aleary use with diffrent providers!" : undefined;
 
 
     const [isPending, startTransition] = useTransition()
@@ -111,7 +111,7 @@ export const LoginForm =()=>{
 
             
             </div>
-            <FormError message={error || urlError}/>
+            <FormError message={error || urlError }/>
             <FormSuccess message={success}/>
          <Button
          disabled={isPending}
